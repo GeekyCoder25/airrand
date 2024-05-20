@@ -58,7 +58,7 @@ export default function Settings() {
 				</View>
 				<Pressable
 					className="bg-[#EA1588] flex-row gap-x-2 py-5 rounded-2xl justify-center items-center mt-16"
-					onPress={() => push('onboarding')}
+					onPress={() => push('onboarding1')}
 				>
 					<LogoutIcon />
 					<Text className="text-white font-bold">Log Out</Text>
