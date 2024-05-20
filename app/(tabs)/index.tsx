@@ -1,70 +1,147 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import FilterIcon from '@/assets/images/icons/filter-icon';
+import RefreshIcon from '@/assets/images/icons/refresh-icon';
+import {FC} from 'react';
+import {Image, View, Text, ScrollView, Dimensions} from 'react-native';
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
+	const updates = [
+		{
+			imageUrl:
+				'https://img.freepik.com/free-vector/realistic-neon-lights-background_23-2148907367.jpg?w=1380&t=st=1716158875',
+		},
+		{
+			imageUrl:
+				'https://www.shutterstock.com/shutterstock/photos/2273914407/display_1500/stock-vector-brutalist-abstract-geometric-shapes-and-grids-brutal-contemporary-figure-star-oval-spiral-flower-2273914407.jpg',
+		},
+		{
+			imageUrl:
+				'https://img.freepik.com/free-vector/gradient-abstract-background_23-2149131346.jpg?w=1380&t=st=1716158919',
+		},
+	];
+
+	const requests = [
+		{
+			_id: 'o23i3o32p',
+			title: 'looking for an experience designer',
+			message:
+				'Hello everyone! I’m looking for an experience graphics designer',
+			price: 200,
+		},
+		{
+			_id: 'o23i3o34p',
+			title: 'web designer',
+			message:
+				'Hello everyone! I’m looking for an experience graphics designer',
+			price: 0,
+		},
+		{
+			_id: 'o23i3s32p',
+			title: 'professional banner designer',
+			message:
+				'Hello everyone! I’m looking for an experience graphics designer',
+			price: 10000,
+		},
+		{
+			_id: 'o23i3532p',
+			title: 'professional banner designer',
+			message:
+				'Hello everyone! I’m looking for an experience graphics designer',
+			price: 200,
+		},
+	];
+	return (
+		<ScrollView className="flex-1 px-[3%] gap-y-5">
+			<View className="mt-6 bg-[#EA1588] p-5 rounded-xl flex-row justify-between">
+				<View className="gap-y-2">
+					<Text className="text-white font-bold text-2xl">
+						Welcome John !!!
+					</Text>
+					<Text className="capitalize text-white">
+						you’re one way in. complete your KYC verification
+					</Text>
+				</View>
+				<View>
+					<Text className="text-white capitalize underline font-bold">
+						get started
+					</Text>
+				</View>
+			</View>
+
+			<View>
+				<View className="flex-row gap-x-1 my-4">
+					<Text className="font-bold text-xl text-[#000]">Latest</Text>
+					<Text className="font-bold text-xl text-[#EA1588]">Update</Text>
+				</View>
+
+				<ScrollView horizontal className="max-h-40">
+					<View className="flex-row gap-x-5">
+						{updates.map(update => (
+							<View key={update.imageUrl}>
+								<Image
+									source={{uri: update.imageUrl}}
+									className="w-40 h-40 rounded-3xl"
+								/>
+							</View>
+						))}
+					</View>
+				</ScrollView>
+			</View>
+			<View>
+				<View className="my-4 flex-row justify-between">
+					<View className="gap-y-2">
+						<View className="flex-row gap-x-1">
+							<Text className="font-bold text-xl text-[#000]">Clients</Text>
+							<Text className="font-bold text-xl text-[#EA1588]">Request</Text>
+						</View>
+						<Text className="opacity-70 font-bold text-base capitalize">
+							send your offer to your clients
+						</Text>
+					</View>
+					<View className="flex-row gap-x-3">
+						<RefreshIcon />
+						<FilterIcon />
+					</View>
+				</View>
+				<View>
+					{requests.map(request => (
+						<ClientRequest key={request._id} request={request} />
+					))}
+				</View>
+			</View>
+		</ScrollView>
+	);
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+const ClientRequest: FC<{
+	request: {
+		_id: string;
+		title: string;
+		message: string;
+		price: number;
+	};
+}> = ({request}) => {
+	let message = request.message;
+	const vw = Dimensions.get('screen').width * 0.1;
+	if (message.length > vw) {
+		const messageArray = message.split(' ').join(',').slice(0, vw).split(',');
+		messageArray.pop();
+		message = messageArray.join(' ') + '....';
+	}
+
+	return (
+		<View className="border-2 border-[#FFF5F6] p-3 rounded-lg mb-5">
+			<Text className="font-bold text-xl text-[#000] text-right">
+				Price: {request.price || 'Undefined'}
+			</Text>
+			<Text className="font-bold text-xl text-[#000] capitalize">
+				{request.title}
+			</Text>
+			<Text className="font-bold text-xl text-[#000] opacity-40">
+				{message}
+			</Text>
+			<Text className="font-bold text-sm text-[#EA1588] text-right">
+				Show Details
+			</Text>
+		</View>
+	);
+};
