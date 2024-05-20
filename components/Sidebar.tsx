@@ -5,12 +5,14 @@ import CloseIcon from '@/assets/images/icons/close-icon';
 import {Link} from 'expo-router';
 import LogoutIcon from '@/assets/images/icons/logout-icon';
 import SwitchOnIcon from '@/assets/images/icons/switchon-icon';
+import {useNavigation} from '@react-navigation/native';
 
 const Sidebar = ({
 	setIsSidebarVisible,
 }: {
 	setIsSidebarVisible: Dispatch<SetStateAction<boolean>>;
 }) => {
+	const {push} = useNavigation();
 	const sidebarLinks = [
 		{
 			link: '/',
@@ -76,7 +78,13 @@ const Sidebar = ({
 						))}
 					</View>
 				</View>
-				<Pressable className="bg-[#EA1588] flex-row gap-x-2 py-5 rounded-2xl justify-center items-center">
+				<Pressable
+					className="bg-[#EA1588] flex-row gap-x-2 py-5 rounded-2xl justify-center items-center"
+					onPress={() => {
+						push('onboarding1');
+						setIsSidebarVisible(false);
+					}}
+				>
 					<LogoutIcon />
 					<Text className="text-white font-bold">Log Out</Text>
 				</Pressable>
