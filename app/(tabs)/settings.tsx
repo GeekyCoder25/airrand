@@ -3,10 +3,10 @@ import React from 'react';
 import SwitchOnIcon from '@/assets/images/icons/switchon-icon';
 import ChevronRightIcon from '@/assets/images/icons/chevron-right-icon';
 import LogoutIcon from '@/assets/images/icons/logout-icon';
-import {useNavigation} from 'expo-router';
+import {useRouter} from 'expo-router';
 
 export default function Settings() {
-	const {push} = useNavigation();
+	const {replace} = useRouter();
 	const settingsRoutes = [
 		{
 			route: '/wallet',
@@ -58,7 +58,7 @@ export default function Settings() {
 				</View>
 				<Pressable
 					className="bg-[#EA1588] flex-row gap-x-2 py-5 rounded-2xl justify-center items-center mt-16"
-					onPress={() => push('onboarding1')}
+					onPress={() => replace('onboarding1')}
 				>
 					<LogoutIcon />
 					<Text className="text-white font-bold">Log Out</Text>
