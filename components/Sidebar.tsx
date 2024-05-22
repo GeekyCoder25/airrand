@@ -85,7 +85,7 @@ const Sidebar = ({
 					}}
 				>
 					<LogoutIcon />
-					<Text className="text-white font-bold">Log Out</Text>
+					<Link href='/onboarding1'><Text className="text-white font-bold">Log Out</Text></Link>
 				</Pressable>
 			</View>
 		</Modal>
