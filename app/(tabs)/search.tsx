@@ -5,12 +5,7 @@ import MapView from 'react-native-maps';
 const Search = () => {
 	return (
 		<View className="flex-1">
-			{Platform.OS === 'web' ? (
-				<Text>Map View</Text>
-			) : (
-				<></>
-				// <MapView className="flex-1 w-full f-full" />
-			)}
+			<MapView className="flex-1 w-full f-full" />
 		</View>
 	);
 };
