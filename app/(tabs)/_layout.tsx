@@ -21,44 +21,43 @@ export default function TabLayout() {
 				screenOptions={{
 					tabBarActiveTintColor: '#EA1588',
 					tabBarInactiveTintColor: '#000',
-					// headerShown: false,
 
-					header: ({navigation, route}) => <Navbar routeName={route.name} />,
+					header: ({route}) => <Navbar routeName={route.name} />,
 				}}
 			>
 				<Tabs.Screen
 					name="index"
 					options={{
 						title: 'Home',
-						tabBarIcon: ({color, focused}) => <HomeIcon color={color} />,
+						tabBarIcon: ({color}) => <HomeIcon color={color} />,
 					}}
 				/>
 				<Tabs.Screen
 					name="search"
 					options={{
 						title: 'Search',
-						tabBarIcon: ({color, focused}) => <SearchIcon color={color} />,
+						tabBarIcon: ({color}) => <SearchIcon color={color} />,
 					}}
 				/>
 				<Tabs.Screen
 					name="message"
 					options={{
 						title: 'Message',
-						tabBarIcon: ({color, focused}) => <MessageIcon color={color} />,
+						tabBarIcon: ({color}) => <MessageIcon color={color} />,
 					}}
 				/>
 				<Tabs.Screen
 					name="task"
 					options={{
 						title: 'Task',
-						tabBarIcon: ({color, focused}) => <TaskIcon color={color} />,
+						tabBarIcon: ({color}) => <TaskIcon color={color} />,
 					}}
 				/>
 				<Tabs.Screen
 					name="settings"
 					options={{
 						title: 'Settings',
-						tabBarIcon: ({color, focused}) => <SettingsIcon color={color} />,
+						tabBarIcon: ({color}) => <SettingsIcon color={color} />,
 					}}
 				/>
 			</Tabs>

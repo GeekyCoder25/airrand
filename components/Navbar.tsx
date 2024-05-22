@@ -5,6 +5,7 @@ import LogoIcon from '@/assets/images/icons/logo-icon';
 import NotificationIcon from '@/assets/images/icons/notification-icon';
 import Sidebar from './Sidebar';
 import VerifiedIcon from '@/assets/images/icons/verified-icon';
+import GiveawayIcon from '@/assets/images/icons/giveaway-icon';
 
 const Navbar = ({routeName}: {routeName: string}) => {
 	const [isSidebarVisible, setIsSidebarVisible] = useState(false);
@@ -24,6 +25,7 @@ const Navbar = ({routeName}: {routeName: string}) => {
 					</Text>
 				)}
 				<View className="flex-row items-center gap-x-4">
+					<GiveawayIcon />
 					<NotificationIcon />
 					<View>
 						<Image

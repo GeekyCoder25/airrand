@@ -30,12 +30,17 @@ export default function RootLayout() {
 	return (
 		<SafeAreaView className="flex-1">
 			<StatusBar style="dark" translucent={false} backgroundColor="#EA1588" />
+<<<<<<< HEAD
 			<Stack>
 				<Stack.Screen name="onboarding1" />
 				<Stack.Screen name="Onboarding2" />
 				<Stack.Screen name="onboarding4" />
 
 
+=======
+			<Stack initialRouteName="onboarding">
+				<Stack.Screen name="onboarding" options={{headerShown: false}} />
+>>>>>>> e57388f0956e613386dae45513883645a37769bb
 				<Stack.Screen name="(tabs)" options={{headerShown: false}} />
 				<Stack.Screen name="+not-found" />
 			</Stack>
