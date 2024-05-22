@@ -27,11 +27,15 @@ export default function RootLayout() {
 	if (!loaded) {
 		return null;
 	}
-
 	return (
 		<SafeAreaView className="flex-1">
 			<StatusBar style="dark" translucent={false} backgroundColor="#EA1588" />
 			<Stack>
+				<Stack.Screen name="onboarding1" />
+				<Stack.Screen name="Onboarding2" />
+				<Stack.Screen name="onboarding4" />
+
+
 				<Stack.Screen name="(tabs)" options={{headerShown: false}} />
 				<Stack.Screen name="+not-found" />
 			</Stack>

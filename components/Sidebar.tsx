@@ -78,7 +78,7 @@ const Sidebar = ({
 				</View>
 				<Pressable className="bg-[#EA1588] flex-row gap-x-2 py-5 rounded-2xl justify-center items-center">
 					<LogoutIcon />
-					<Text className="text-white font-bold">Log Out</Text>
+					<Link href='/onboarding1'><Text className="text-white font-bold">Log Out</Text></Link>
 				</Pressable>
 			</View>
 		</Modal>
