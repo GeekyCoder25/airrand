@@ -25,6 +25,7 @@ const Onboarding3 = () => {
           </Image>
         </View >
   
+  {/* button */}
         <TouchableOpacity 
         className='bg-[#EA1588] px-[35%] py-[20px] rounded-xl'
         onPress= {()=>navigation.navigate('onboarding4')}>
