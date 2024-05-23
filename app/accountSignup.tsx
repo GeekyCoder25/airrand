@@ -6,6 +6,8 @@ const accountSignup = () => {
     const navigate = useRouter()
 
         const[newBtn, setNewBtn] = useState(false)
+        const[active, setActive] = useState(false)
+        const[active1, setActive1] = useState(false)
        
     
 
@@ -16,21 +18,37 @@ const accountSignup = () => {
 					<Text className=" text-black font-bold text-lg text-right">Back</Text>
 				</Link>
 		</View>
-        <View className=' flex gap-[5px] mt-[150px] w-[85%] '>
+        <View className=' flex gap-[5px] mt-[100px] w-[85%] '>
             <Text className='text-black font-bold text-[25px]'>Choose <Text className='text-[#EA1588]'>Account Type</Text></Text>
             <Text className='text-[#000000B2] font-semibold mb-[30px]'>Select Your Account Type For Best Experience.</Text>
             
-            <TouchableOpacity
-                className=' w-[100%] py-[30px] rounded-[20px] border-inherit '
-                onPress={()=>setNewBtn(true)}
+            <TouchableOpacity 
+                style = {active ? styles.active: styles.button}
+
+                className=' w-[100%] py-[30px] rounded-[20px] '
+                onPress={()=>{setNewBtn(true); if(active == true){
+                    setActive(false);
+                    setActive1(true)
+                }else{
+                    setActive(true)
+                    setActive1(false)
+                }}}
             >
                 <Text className='ml-[30px] mb-1 text-[20px] font-bold'>As A Client</Text>
                 <Text className='ml-[30px] text-[15px] font-semibold text-[#000000B2] ' >Sign Up As A Client</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-                style = {styles.button}
-                 onPress={()=>setNewBtn(true)}
+                style = {active1 ? styles.active: styles.button}
+                 onPress={()=>{setNewBtn(true); if(active1 == true){
+                    setActive(true);
+                    setActive1(false)
+                }else{
+                    setActive(false)
+                    setActive1(true)
+                }}}
+                className=' w-[100%] py-[30px] rounded-[20px]'
+
                 // onPress={()=>navigate.navigate('signup')}
             >
                 <Text className='ml-[30px] mb-1 text-[20px] font-bold'>As A Tasker</Text>
@@ -60,8 +78,16 @@ export default accountSignup
 
 const styles = StyleSheet.create({
     button:{
-      
+         borderColor:"#F3F5FF",
+         borderWidth:3,
+         borderRadius:15,
+        //  padding:10,
     
+    },
+    active:{
+        borderColor:"#EA1588",
+         borderWidth:3,
+         borderRadius:15,
     }
    
 })

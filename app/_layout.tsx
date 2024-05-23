@@ -31,9 +31,8 @@ export default function RootLayout() {
 		<SafeAreaView className="flex-1">
 			<StatusBar style="dark" translucent={false} backgroundColor="#EA1588" />
 			<Stack screenOptions={{headerShown: false}}>
-			<Stack.Screen name="signup" />
-			<Stack.Screen name="login" />
-
+				<Stack.Screen name="login" />
+				<Stack.Screen name="signup" />
 				<Stack.Screen name="accountSignup" />
 				<Stack.Screen name="onboarding4" />
 				<Stack.Screen name="Onboarding3" />
