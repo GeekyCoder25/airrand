@@ -13,12 +13,11 @@ const Onboarding2 = () => {
 	const navigation = useRouter();
 	return (
 		<View className="w-full h-screen bg-white flex  items-center pt-6 gap-[3px]">
-			<View className="w-[85%] bg-white flex ">
+			<View className="w-[85%] bg-white flex">
 				<Link href="/onboarding4">
 					<Text className=" text-black font-bold text-lg text-right">Skip</Text>
 				</Link>
 			</View>
-
 			<View className="mb-5 w-[80%] h-[400px] flex justify-center items-center  ">
 				<Image source={require('../assets/images/card.png')}></Image>
 			</View>
