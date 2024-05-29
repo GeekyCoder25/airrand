@@ -1,16 +1,57 @@
 import { StyleSheet, Text, View,Image,ScrollView,TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { Dropdown } from 'react-native-element-dropdown';
-import DatePicker from 'react-native-date-picker';
+import { useRouter } from 'expo-router';
+// import DatePicker from 'react-native-date-picker';
 
 const offer = () => {
-    const[date, Setdate] = useState(new Date())
+    const navigate = useRouter()
+    // const[date, Setdate] = useState(new Date())
     const[open, SetOpen] = useState(false)
    
     function handleOpen(){
         SetOpen(!open)
     }
-
+    const[month, SetMonth] = useState('')
+    const months = [
+        {
+            theMonth: "January" , 
+        },
+        {
+            theMonth: "February" , 
+        },
+        {
+            theMonth: "March" , 
+        },
+        {
+            theMonth: "April" , 
+        },
+        {
+            theMonth: "May" , 
+        },
+        {
+            theMonth: "June" , 
+        },
+        {
+            theMonth: "July" , 
+        },
+        {
+            theMonth: "August" , 
+        },
+        {
+            theMonth: "September" , 
+        },
+        {
+            theMonth: "October" , 
+        },
+        {
+            theMonth: "November" , 
+        },
+        {
+            theMonth: "December" , 
+        },
+       
+     ]
 
     const[selectNation, SetSelectNation] = useState('')
     const nations = [
@@ -45,8 +86,8 @@ const offer = () => {
                     >
                     </TextInput>
                 </View>
-                <View className='w-[90%] gap-y-2'>
-                    <Text className='font-bold text-[17px] mt-[0px] '>Select Category</Text>
+                <View className='w-[90%] gap-y-2'> 
+                    <Text className='font-bold text-[17px] mt-[0px] '>Selec Category</Text>
                     <Dropdown 
                         style={styles.border}
                         data={nations}
@@ -60,7 +101,7 @@ const offer = () => {
                     />
                 </View>
                 <View className='w-[90%] gap-y-2'>
-                    <Text className='font-bold text-[17px]  '>Proposal text</Text>
+                    <Text className='font-bold text-[17px]'>Proposal text</Text>
                     <TextInput 
                     style = {styles.textarea}
                     className='w-[100%] mb-[20px]' 
@@ -79,34 +120,63 @@ const offer = () => {
                     >
                     </TextInput>
                 </View>
-                <View className='w-[90%] gap-y-2'>
-                    <Text className='font-bold text-[17px] '>Pricing</Text>
-                    <TouchableOpacity 
-                    className='bg-red-400'
-                    onPress={handleOpen}>
-                        <Text>open</Text>
-                    </TouchableOpacity>
+           
+                <TouchableOpacity 
+                className=' bg-[#EA1588] py-[15px] px-[20px] rounded-[10px] '  
+                onPress={handleOpen}>
+                    <Text className='text-white font-bold'>Click To Select Date</Text>
+                </TouchableOpacity>
                    
-                </View>
-                {open &&  <DatePicker 
-                mode = 'date'
-                date={date} 
-                onDateChange={Setdate} /> 
-                    }
-                     {/* {open &&  <DatePicker 
-                        modal
-                        open={open}
-                        date={date}
-                        onConfirm={(date) => {
-                          SetOpen(false)
-                          Setdate(date)
-                        }}
-                        onCancel={() => {
-                          SetOpen(false)
-                        }}
-               
-               /> */}
-              
+                {open &&
+                    <View className='w-[90%] items-center'>
+                        <View className='w-[100%] flex-row justify-between items-center mt-[20px]'>
+                            <Dropdown
+                            style ={styles.dropdown}
+                            data={months}
+                            value={month}
+                            placeholder='Select Month'
+                            labelField="theMonth"
+                            valueField="theMonth"
+                            onChange={(m)=>{
+                                    SetMonth(m.theMonth)
+                            }}
+
+                            />
+                            <TextInput 
+                            className='w-[25%]' 
+                            style = {styles.border}
+                            placeholder='Date'
+                            placeholderTextColor='black'
+                            keyboardType='numeric'
+                            >
+
+                            </TextInput>
+                            <TextInput 
+                            className='w-[25%]' 
+                            style = {styles.border}
+                            placeholder='Year'
+                            placeholderTextColor='black'
+                            keyboardType='numeric'
+                            >
+
+                            </TextInput>
+                    
+                       </View>
+                       <TouchableOpacity
+                            onPress={()=>navigate.navigate('GovernmentId')}
+                            className="bg-[#EA1588] p-5 rounded-lg justify-center items-center w-[90%] mt-[30px]"
+                            >
+                            <Text className="text-white">Let's Go</Text>
+                        </TouchableOpacity>
+                            
+                
+
+                    </View> 
+                
+                 }
+                  
+             
+                 
                 
           
                 
@@ -133,4 +203,11 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         textAlignVertical: 'top', // Aligns text at the top of the TextInput
       },
+      dropdown:{
+        height: 40, borderColor: 'gray', borderWidth: 1,  marginBottom: 20,
+        borderRadius: 10,
+        paddingLeft: 20,
+        width:'40%'
+
+      }
 })

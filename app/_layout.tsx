@@ -31,11 +31,14 @@ export default function RootLayout() {
 		<SafeAreaView className="flex-1">
 			<StatusBar style="dark" translucent={false} backgroundColor="#EA1588" />
 			<Stack screenOptions={{headerShown: false}}>
-			<Stack.Screen name='offer'/>
-
-			  <Stack.Screen name='GovernmentId'/>
-
-
+			
+				<Stack.Screen name='OfferSent'/>
+				<Stack.Screen name='TaskDetail'/>
+				<Stack.Screen name='CheckingPage'/>
+				<Stack.Screen name='SelfiePage'/>
+				<Stack.Screen name='UploadDocument'/>
+				<Stack.Screen name='GovernmentId'/>
+				<Stack.Screen name='offer'/>
 				<Stack.Screen name='verifyOnboarding'/>
 				<Stack.Screen name='verification'/>
 				<Stack.Screen name='availability'/>
