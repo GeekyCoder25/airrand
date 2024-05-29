@@ -1,9 +1,9 @@
 import {View, Text, ScrollView, Pressable} from 'react-native';
 import React from 'react';
-import SwitchOnIcon from '@/assets/images/icons/switchon-icon';
+import SwitchOnIcon from '@/assets/images/icons/switch-on-icon';
 import ChevronRightIcon from '@/assets/images/icons/chevron-right-icon';
 import LogoutIcon from '@/assets/images/icons/logout-icon';
-import {useRouter} from 'expo-router';
+import {router, useRouter} from 'expo-router';
 
 export default function Settings() {
 	const {replace} = useRouter();
@@ -17,7 +17,7 @@ export default function Settings() {
 			label: 'profile',
 		},
 		{
-			route: '/referrals',
+			route: '/referral',
 			label: 'referrals',
 		},
 		{
@@ -30,7 +30,7 @@ export default function Settings() {
 		},
 	];
 	return (
-		<ScrollView className="">
+		<ScrollView>
 			<View className="px-[5%] flex-1 py-5">
 				<View className="mb-5">
 					<Text className="text-black font-bold text-xl">Account Type</Text>
@@ -45,15 +45,16 @@ export default function Settings() {
 				</View>
 				<View className="gap-y-8">
 					{settingsRoutes.map(settingsRoute => (
-						<View
+						<Pressable
 							key={settingsRoute.label}
+							onPress={() => router.navigate(settingsRoute.route)}
 							className="border-2 border-[#FFF5F6] p-3 rounded-lg flex-row items-center justify-between"
 						>
 							<Text className="text-black font-bold text-base capitalize">
 								{settingsRoute.label}
 							</Text>
 							<ChevronRightIcon />
-						</View>
+						</Pressable>
 					))}
 				</View>
 				<Pressable

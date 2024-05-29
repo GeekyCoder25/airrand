@@ -6,14 +6,16 @@ import NotificationIcon from '@/assets/images/icons/notification-icon';
 import Sidebar from './Sidebar';
 import VerifiedIcon from '@/assets/images/icons/verified-icon';
 import GiveawayIcon from '@/assets/images/icons/giveaway-icon';
+import {useRouter} from 'expo-router';
 
 const Navbar = ({routeName}: {routeName: string}) => {
 	const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 	const isVerified = true;
+	const router = useRouter();
 
 	return (
 		<>
-			<View className="p-5 flex-row justify-between items-center">
+			<View className="p-5 flex-row justify-between items-center bg-white">
 				<Pressable onPress={() => setIsSidebarVisible(true)}>
 					<HamburgerIcon />
 				</Pressable>
@@ -26,7 +28,9 @@ const Navbar = ({routeName}: {routeName: string}) => {
 				)}
 				<View className="flex-row items-center gap-x-4">
 					<GiveawayIcon />
-					<NotificationIcon />
+					<Pressable onPress={() => router.navigate('/notification')}>
+						<NotificationIcon />
+					</Pressable>
 					<View>
 						<Image
 							source={{

@@ -13,8 +13,6 @@ import Navbar from '@/components/Navbar';
 import {StatusBar} from 'expo-status-bar';
 
 export default function TabLayout() {
-	const colorScheme = useColorScheme();
-
 	return (
 		<>
 			<Tabs

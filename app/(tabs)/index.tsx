@@ -1,7 +1,71 @@
 import FilterIcon from '@/assets/images/icons/filter-icon';
 import RefreshIcon from '@/assets/images/icons/refresh-icon';
+import {router} from 'expo-router';
 import {FC} from 'react';
-import {Image, View, Text, ScrollView, Dimensions} from 'react-native';
+import {
+	Image,
+	View,
+	Text,
+	ScrollView,
+	Dimensions,
+	Pressable,
+} from 'react-native';
+
+export const requests = [
+	{
+		_id: 'o23i3o32p',
+		title: 'looking for an experience designer',
+		message: 'Hello everyone! I’m looking for an experience graphics designer',
+		price: 200,
+		period: 0.5,
+		location: 'remote',
+		user: {
+			fullName: 'john doe',
+			avatar: '',
+			isCertified: true,
+		},
+	},
+	{
+		_id: 'o23i3o34p',
+		title: 'web designer',
+		message: 'Hello everyone! I’m looking for an experience graphics designer',
+		price: 0,
+		period: 12,
+		location: 'remote',
+		user: {
+			fullName: 'john doe',
+			avatar: '',
+			isCertified: true,
+		},
+	},
+	{
+		_id: 'o23i3s32p',
+		title: 'professional banner designer',
+		message: 'Hello everyone! I’m looking for an experience graphics designer',
+		price: 10000,
+		period: 60,
+		location: 'remote',
+		user: {
+			fullName: 'john doe',
+			avatar: '',
+			isCertified: true,
+		},
+	},
+	{
+		_id: 'o23i3532p',
+		title: 'professional banner designer',
+		message: 'Hello everyone! I’m looking for an experience graphics designer',
+		price: 200,
+		image: '',
+		period: 2,
+		location: 'remote',
+		user: {
+			fullName: 'john doe',
+			avatar: '',
+			isCertified: true,
+		},
+	},
+];
 
 export default function HomeScreen() {
 	const updates = [
@@ -19,36 +83,6 @@ export default function HomeScreen() {
 		},
 	];
 
-	const requests = [
-		{
-			_id: 'o23i3o32p',
-			title: 'looking for an experience designer',
-			message:
-				'Hello everyone! I’m looking for an experience graphics designer',
-			price: 200,
-		},
-		{
-			_id: 'o23i3o34p',
-			title: 'web designer',
-			message:
-				'Hello everyone! I’m looking for an experience graphics designer',
-			price: 0,
-		},
-		{
-			_id: 'o23i3s32p',
-			title: 'professional banner designer',
-			message:
-				'Hello everyone! I’m looking for an experience graphics designer',
-			price: 10000,
-		},
-		{
-			_id: 'o23i3532p',
-			title: 'professional banner designer',
-			message:
-				'Hello everyone! I’m looking for an experience graphics designer',
-			price: 200,
-		},
-	];
 	return (
 		<ScrollView className="flex-1 px-[3%] gap-y-5">
 			<View className="mt-6 bg-[#EA1588] p-5 rounded-xl flex-row justify-between">
@@ -118,6 +152,8 @@ const ClientRequest: FC<{
 		title: string;
 		message: string;
 		price: number;
+		period: number;
+		location: 'remote' | 'onsite' | string;
 	};
 }> = ({request}) => {
 	let message = request.message;
@@ -136,12 +172,16 @@ const ClientRequest: FC<{
 			<Text className="font-bold text-xl text-[#000] capitalize">
 				{request.title}
 			</Text>
-			<Text className="font-bold text-xl text-[#000] opacity-40">
+			<Text className="font-semibold text-lg text-[#000] opacity-40">
 				{message}
 			</Text>
-			<Text className="font-bold text-sm text-[#EA1588] text-right">
-				Show Details
-			</Text>
+			<Pressable
+				onPress={() => router.navigate(`/project-details/${request._id}`)}
+			>
+				<Text className="font-bold text-sm text-[#EA1588] text-right">
+					Show Details
+				</Text>
+			</Pressable>
 		</View>
 	);
 };

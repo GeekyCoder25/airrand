@@ -1,36 +1,47 @@
 import FilterIcon from '@/assets/images/icons/filter-icon';
 import ReadIcon from '@/assets/images/icons/read-icon';
+import {router} from 'expo-router';
 import {FC} from 'react';
-import {Dimensions, Image, ScrollView, Text, View} from 'react-native';
+import {
+	Dimensions,
+	Image,
+	Pressable,
+	ScrollView,
+	Text,
+	View,
+} from 'react-native';
+
+export const messages = [
+	{
+		_id: '309489',
+		name: 'adam akintoye',
+		user: 'john@gmail.com',
+		message: 'hi alimi! can you help with that?',
+		time: Date.now(),
+		avatar:
+			'https://toyib.vercel.app/static/media/profileavatar.0d99c3ae75efbac1342f.png',
+	},
+	{
+		_id: '309d1w489',
+		name: 'adam akintoye',
+		user: 'john@gmail.com',
+		message: 'hi alimi! can you help with that?',
+		time: Date.now(),
+		avatar:
+			'https://toyib.vercel.app/static/media/profileavatar.0d99c3ae75efbac1342f.png',
+	},
+	{
+		_id: '3094r389',
+		name: 'adam akintoye',
+		user: 'john@gmail.com',
+		message: 'hi alimi! can you help with that?',
+		time: Date.now(),
+		avatar:
+			'https://toyib.vercel.app/static/media/profileavatar.0d99c3ae75efbac1342f.png',
+	},
+];
 
 export default function Messages() {
-	const messages = [
-		{
-			_id: '309489',
-			name: 'adam akintoye',
-			message: 'hi alimi! can you help with that?',
-			time: Date.now(),
-			avatar:
-				'https://toyib.vercel.app/static/media/profileavatar.0d99c3ae75efbac1342f.png',
-		},
-		{
-			_id: '309d1w489',
-			name: 'adam akintoye',
-			message: 'hi alimi! can you help with that?',
-			time: Date.now(),
-			avatar:
-				'https://toyib.vercel.app/static/media/profileavatar.0d99c3ae75efbac1342f.png',
-		},
-		{
-			_id: '3094r389',
-			name: 'adam akintoye',
-			message: 'hi alimi! can you help with that?',
-			time: Date.now(),
-			avatar:
-				'https://toyib.vercel.app/static/media/profileavatar.0d99c3ae75efbac1342f.png',
-		},
-	];
-
 	if (!messages.length) {
 		return (
 			<View className="flex-1 px-[3%] gap-y-5 py-5">
@@ -82,7 +93,10 @@ const Message: FC<{
 	}
 
 	return (
-		<View className="border-2 border-[#FFF5F6] pb-3 pr-3 rounded-lg mb-8 flex-row justify-between gap-3">
+		<Pressable
+			onPress={() => router.push(`/message-chat/${message._id}`)}
+			className="border-2 border-[#FFF5F6] pb-3 pr-3 rounded-lg mb-8 flex-row justify-between gap-3"
+		>
 			<View className="flex-row flex-1 items-center gap-x-3">
 				<View>
 					<Image
@@ -109,6 +123,6 @@ const Message: FC<{
 				</Text>
 				<ReadIcon />
 			</View>
-		</View>
+		</Pressable>
 	);
 };

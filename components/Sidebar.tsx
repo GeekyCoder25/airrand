@@ -4,7 +4,7 @@ import LogoIcon from '@/assets/images/icons/logo-icon';
 import CloseIcon from '@/assets/images/icons/close-icon';
 import {Link, useRouter} from 'expo-router';
 import LogoutIcon from '@/assets/images/icons/logout-icon';
-import SwitchOnIcon from '@/assets/images/icons/switchon-icon';
+import SwitchOnIcon from '@/assets/images/icons/switch-on-icon';
 
 const Sidebar = ({
 	setIsSidebarVisible,
@@ -85,7 +85,9 @@ const Sidebar = ({
 					}}
 				>
 					<LogoutIcon />
-					<Link href='/onboarding1'><Text className="text-white font-bold">Log Out</Text></Link>
+					<Link href="/onboarding1">
+						<Text className="text-white font-bold">Log Out</Text>
+					</Link>
 				</Pressable>
 			</View>
 		</Modal>
