@@ -32,6 +32,16 @@ export default function RootLayout() {
 			<StatusBar style="dark" translucent={false} backgroundColor="#EA1588" />
 			<Stack screenOptions={{headerShown: false}}>
 			
+				<Stack.Screen name='MessageClient'/>
+				<Stack.Screen name='postPage'/>
+				<Stack.Screen name='notificationClient'/>
+				<Stack.Screen name='homePageClient'/>
+				<Stack.Screen name='giveawayclientThree'/>
+				<Stack.Screen name='giveawayclientTwo'/>
+				<Stack.Screen name='giveawayClient'/>
+				<Stack.Screen name='loginClient'/>
+				<Stack.Screen name='signUpClient'/>
+				<Stack.Screen name='Message'/>
 				<Stack.Screen name='OfferSent'/>
 				<Stack.Screen name='TaskDetail'/>
 				<Stack.Screen name='CheckingPage'/>
