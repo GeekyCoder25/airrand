@@ -32,6 +32,8 @@ export default function RootLayout() {
 			<StatusBar style="dark" translucent={false} backgroundColor="#EA1588" />
 			<Stack screenOptions={{headerShown: false}}>
 			
+			<Stack.Screen name='MessageChat'/>
+
 				<Stack.Screen name='MessageClient'/>
 				<Stack.Screen name='postPage'/>
 				<Stack.Screen name='notificationClient'/>

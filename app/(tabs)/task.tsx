@@ -1,36 +1,65 @@
 import FilterIcon from '@/assets/images/icons/filter-icon';
-import ReadIcon from '@/assets/images/icons/read-icon';
+import {useRouter} from 'expo-router';
 import {FC} from 'react';
-import {Dimensions, Image, ScrollView, Text, View} from 'react-native';
+import {Pressable, ScrollView, Text, View} from 'react-native';
+
+interface TaskType {
+	_id: string;
+	title: string;
+	desc: string;
+	time: string | number;
+	status: 'active' | 'in-progress' | 'completed' | 'cancelled' | string;
+	price: number;
+	user: {
+		fullName: string;
+		avatar?: string;
+		isCertified: boolean;
+	};
+}
+
+export const tasks = [
+	{
+		_id: '309489',
+		title: 'professional web designer',
+		desc: 'designed a professional wordpress website.',
+		status: 'active',
+		time: Date.now(),
+		price: 20000,
+		user: {
+			fullName: 'john doe',
+			avatar: '',
+			isCertified: true,
+		},
+	},
+	{
+		_id: '309d1w489',
+		title: 'experience wordpress designer',
+		desc: 'designed a professional wordpress website.',
+		status: 'cancelled',
+		time: Date.now(),
+		price: 1200,
+		user: {
+			fullName: 'john doe',
+			avatar: '',
+			isCertified: true,
+		},
+	},
+	{
+		_id: '3094r389',
+		title: 'wordpress theme',
+		desc: 'designed a professional wordpress website.',
+		status: 'completed',
+		time: Date.now(),
+		price: 8000,
+		user: {
+			fullName: 'john doe',
+			avatar: '',
+			isCertified: true,
+		},
+	},
+];
 
 export default function Tasks() {
-	const tasks = [
-		{
-			_id: '309489',
-			title: 'professional web designer',
-			desc: 'designed a professional wordpress website.',
-			status: 'active',
-			time: Date.now(),
-			price: 20000,
-		},
-		{
-			_id: '309d1w489',
-			title: 'experience wordpress designer',
-			desc: 'designed a professional wordpress website.',
-			status: 'cancelled',
-			time: Date.now(),
-			price: 1200,
-		},
-		{
-			_id: '3094r389',
-			title: 'wordpress theme',
-			desc: 'designed a professional wordpress website.',
-			status: 'completed',
-			time: Date.now(),
-			price: 8000,
-		},
-	];
-
 	if (!tasks.length) {
 		return (
 			<View className="flex-1 px-[5%] gap-y-5 py-5">
@@ -60,19 +89,13 @@ export default function Tasks() {
 	);
 }
 
-const Task: FC<{
-	task: {
-		_id: string;
-		title: string;
-		desc: string;
-		time: string | number;
-		avatar?: string;
-		status: 'active' | 'in-progress' | 'completed' | 'cancelled' | string;
-		price: number;
-	};
-}> = ({task}) => {
+const Task: FC<{task: TaskType}> = ({task}) => {
+	const router = useRouter();
 	return (
-		<View className="border-2 border-[#FFF5F6] p-3 rounded-lg mb-8">
+		<Pressable
+			onPress={() => router.navigate(`/task-details/${task._id}`)}
+			className="border-2 border-[#FFF5F6] p-3 rounded-lg mb-8"
+		>
 			<View className="">
 				{task.status === 'active' && (
 					<Text className="text-[#12D153] text-right font-semibold -mb-1">
@@ -117,6 +140,6 @@ const Task: FC<{
 				</View>
 				<View></View>
 			</View>
-		</View>
+		</Pressable>
 	);
 };

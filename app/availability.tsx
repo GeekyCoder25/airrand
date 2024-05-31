@@ -1,24 +1,22 @@
-import { StyleSheet, Text, View,Image } from 'react-native'
-import React from 'react'
+import {View, Text, Pressable} from 'react-native';
+import React, {useState} from 'react';
+import SwitchOnIcon from '@/assets/images/icons/switch-on-icon';
+import SwitchOffIcon from '@/assets/images/icons/switch-off-icon';
 
-const availability = () => {
-  return (
-    <View className='w-[100%] justify-center items-center'>
-        <View className='w-[90%] mt-[30px] flex-row justify-between py-[30px] px-4' style={styles.border}>
-            <Text className='font-bold text-[15px]'>Are You Available</Text>
-            <Image source={require('../assets/images/toggle.png')}/>
-        </View>
-       
-    </View>
-  )
-}
+const Availability = () => {
+	const [isAvailable, setIsAvailable] = useState(true);
+	return (
+		<View className="px-[5%] flex-1 py-5">
+			<View className="flex-row justify-between border-2 mt-8 border-[#FFF5F6] p-5 rounded-lg">
+				<Text className="text-black font-semibold text-base capitalize">
+					Are You Available
+				</Text>
+				<Pressable onPress={() => setIsAvailable(prev => !prev)}>
+					{isAvailable ? <SwitchOnIcon /> : <SwitchOffIcon />}
+				</Pressable>
+			</View>
+		</View>
+	);
+};
 
-export default availability
-
-const styles = StyleSheet.create({
-    border:{
-        borderColor:"#e8eef1",
-        borderWidth:3,
-        borderRadius:15,
-    }
-})
+export default Availability;
