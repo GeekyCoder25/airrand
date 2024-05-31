@@ -31,14 +31,12 @@ export default function RootLayout() {
 		<SafeAreaView className="flex-1">
 			<StatusBar style="dark" translucent={false} backgroundColor="#EA1588" />
 			<Stack screenOptions={{headerShown: false}}>
-			
-			<Stack.Screen name='MessageChat'/>
-
+				<Stack.Screen name='giveawayclientThree'/>
+				<Stack.Screen name='MessageChat'/>
 				<Stack.Screen name='MessageClient'/>
 				<Stack.Screen name='postPage'/>
 				<Stack.Screen name='notificationClient'/>
 				<Stack.Screen name='homePageClient'/>
-				<Stack.Screen name='giveawayclientThree'/>
 				<Stack.Screen name='giveawayclientTwo'/>
 				<Stack.Screen name='giveawayClient'/>
 				<Stack.Screen name='loginClient'/>
