@@ -92,8 +92,7 @@ export default function RootLayout() {
 							}}
 						/>
 
-						{/* <Stack.Screen name="MessageChat" /> */}
-
+						<Stack.Screen name="MessageChat" />
 						<Stack.Screen name="MessageClient" />
 						<Stack.Screen name="postPage" />
 						<Stack.Screen name="notificationClient" />
