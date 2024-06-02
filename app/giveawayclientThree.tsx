@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'rea
 import React from 'react'
 
 const giveawayclientThree = () => {
+    // message chat data 
+    
     const giveaway =[
         {
             image : require('../assets/images/profilepics.png'),
