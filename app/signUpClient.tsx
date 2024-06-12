@@ -4,6 +4,8 @@ import { Link } from 'expo-router'
 import { useRouter } from 'expo-router'
 
 const signUpClient = () => {
+   
+    
   return (
     <ScrollView className=' h-full'>
     <View className='flex items-center bg-white w-[100%] h-[100vh]'>
