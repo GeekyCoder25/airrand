@@ -104,15 +104,15 @@ const App = () => {
 						/>
 
 						{/* <Stack.Screen name="MessageChat" /> */}
-						{/* <Stack.Screen name="MessageClient" /> */}
+						<Stack.Screen name="MessageClient" />
 						<Stack.Screen name="postPage" />
-						{/* <Stack.Screen name="notificationClient" /> */}
-						{/* <Stack.Screen name="homePageClient" /> */}
+						<Stack.Screen name="notificationClient" />
+						<Stack.Screen name="homePageClient" />
 						<Stack.Screen name="giveawayclientThree" />
 						<Stack.Screen name="giveawayclientTwo" />
 						<Stack.Screen name="giveawayClient" />
-						{/* <Stack.Screen name="loginClient" /> */}
-						{/* <Stack.Screen name="signUpClient" /> */}
+						<Stack.Screen name="loginClient" />
+						<Stack.Screen name="signUpClient" />
 						<Stack.Screen name="+not-found" />
 					</Stack>
 				) : (
