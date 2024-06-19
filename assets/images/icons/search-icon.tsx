@@ -4,7 +4,7 @@ import type {SvgProps} from 'react-native-svg';
 const SearchIcon = (props: SvgProps) => (
 	<Svg width={18} height={18} fill="none" {...props}>
 		<Path
-			stroke="#EA1588"
+			stroke={props.color || '#EA1588'}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth={2}

@@ -1,7 +1,8 @@
 import FilterIcon from '@/assets/images/icons/filter-icon';
 import ReadIcon from '@/assets/images/icons/read-icon';
+import {AppContext} from '@/context/AppContext';
 import {router} from 'expo-router';
-import {FC} from 'react';
+import {FC, useContext} from 'react';
 import {
 	Dimensions,
 	Image,
@@ -80,6 +81,7 @@ const Message: FC<{
 		avatar?: string;
 	};
 }> = ({message}) => {
+	const {isClient} = useContext(AppContext);
 	let messageContent = message.message;
 	const vw = Dimensions.get('screen').width * 0.1;
 	if (messageContent.length > vw) {
@@ -95,7 +97,9 @@ const Message: FC<{
 	return (
 		<Pressable
 			onPress={() => router.push(`/message-chat/${message._id}`)}
-			className="border-2 border-[#FFF5F6] pb-3 pr-3 rounded-lg mb-8 flex-row justify-between gap-3"
+			className={`border-2 ${
+				isClient ? 'border-[#F3F5FF]' : 'border-[#FFF5F6]'
+			} pb-3 pr-3 rounded-lg mb-8 flex-row justify-between gap-3`}
 		>
 			<View className="flex-row flex-1 items-center gap-x-3">
 				<View>
@@ -121,7 +125,7 @@ const Message: FC<{
 				<Text className="font-medium opacity-50 text-sm text-right">
 					{new Date(message.time).toLocaleTimeString()}
 				</Text>
-				<ReadIcon />
+				<ReadIcon color={isClient ? '#2F3C7E' : '#EA1588'} />
 			</View>
 		</Pressable>
 	);

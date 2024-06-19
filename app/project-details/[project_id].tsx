@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import React from 'react';
 import {router, useLocalSearchParams} from 'expo-router';
-import {requests as projects} from '../(tabs)';
 import {MaterialIcons} from '@expo/vector-icons';
+import {requests as projects} from '@/components/pages/HomeTasker';
 
 const ProjectDetails = () => {
 	const {project_id} = useLocalSearchParams();

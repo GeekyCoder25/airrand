@@ -4,7 +4,7 @@ import type {SvgProps} from 'react-native-svg';
 const SendIcon = (props: SvgProps) => (
 	<Svg width={21} height={21} fill="none" {...props}>
 		<Path
-			stroke="#EA1588"
+			stroke={props.color || '#EA1588'}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth={2}

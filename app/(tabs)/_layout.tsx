@@ -1,64 +1,44 @@
 import {Tabs} from 'expo-router';
-import React from 'react';
-
-import {TabBarIcon} from '@/components/navigation/TabBarIcon';
-import {Colors} from '@/constants/Colors';
-import {useColorScheme} from '@/hooks/useColorScheme';
-import HomeIcon from '@/assets/images/icons/home-icon';
-import SearchIcon from '@/assets/images/icons/search-icon';
-import MessageIcon from '@/assets/images/icons/message-icon';
-import TaskIcon from '@/assets/images/icons/task-icon';
-import SettingsIcon from '@/assets/images/icons/settings-icon';
+import React, {useContext} from 'react';
 import Navbar from '@/components/Navbar';
-import {StatusBar} from 'expo-status-bar';
+import {AppContext} from '@/context/AppContext';
+import TabBarClient from '@/components/TabBarClient';
+import TabBarTasker from '@/components/TabBarTasker';
 
 export default function TabLayout() {
-	return (
-		<>
-			<Tabs
-				screenOptions={{
-					tabBarActiveTintColor: '#EA1588',
-					tabBarInactiveTintColor: '#000',
+	const {isClient} = useContext(AppContext);
 
-					header: ({route}) => <Navbar routeName={route.name} />,
-				}}
-			>
-				<Tabs.Screen
-					name="index"
-					options={{
-						title: 'Home',
-						tabBarIcon: ({color}) => <HomeIcon color={color} />,
-					}}
-				/>
-				<Tabs.Screen
-					name="search"
-					options={{
-						title: 'Search',
-						tabBarIcon: ({color}) => <SearchIcon color={color} />,
-					}}
-				/>
-				<Tabs.Screen
-					name="message"
-					options={{
-						title: 'Message',
-						tabBarIcon: ({color}) => <MessageIcon color={color} />,
-					}}
-				/>
-				<Tabs.Screen
-					name="task"
-					options={{
-						title: 'Task',
-						tabBarIcon: ({color}) => <TaskIcon color={color} />,
-					}}
-				/>
-				<Tabs.Screen
-					name="settings"
-					options={{
-						title: 'Settings',
-						tabBarIcon: ({color}) => <SettingsIcon color={color} />,
-					}}
-				/>
-			</Tabs>
-		</>
+	return isClient ? (
+		<Tabs
+			screenOptions={{
+				header: ({route}) => <Navbar routeName={route.name} />,
+			}}
+			tabBar={props => <TabBarClient props={props} />}
+		>
+			<Tabs.Screen
+				name="task"
+				options={{header: () => <Navbar routeName="post" />}}
+			/>
+			<Tabs.Screen name="message" />
+			<Tabs.Screen name="index" />
+			<Tabs.Screen
+				name="settings"
+				options={{header: () => <Navbar routeName="notification" />}}
+			/>
+			<Tabs.Screen name="search" />
+		</Tabs>
+	) : (
+		<Tabs
+			screenOptions={{
+				header: ({route}) => <Navbar routeName={route.name} />,
+			}}
+			tabBar={props => <TabBarTasker props={props} />}
+		>
+			<Tabs.Screen name="index" />
+			<Tabs.Screen name="search" />
+			<Tabs.Screen name="message" />
+			<Tabs.Screen name="task" />
+			<Tabs.Screen name="settings" />
+		</Tabs>
 	);
 }

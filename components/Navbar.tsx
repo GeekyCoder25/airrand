@@ -15,32 +15,34 @@ const Navbar = ({routeName}: {routeName: string}) => {
 
 	return (
 		<>
-			<View className="p-5 flex-row justify-between items-center bg-white">
-				<Pressable onPress={() => setIsSidebarVisible(true)}>
-					<HamburgerIcon />
-				</Pressable>
-				{routeName === 'index' ? (
-					<LogoIcon />
-				) : (
-					<Text className="text-black font-bold text-lg capitalize">
-						{routeName}
-					</Text>
-				)}
-				<View className="flex-row items-center gap-x-4">
-					<GiveawayIcon />
-					<Pressable onPress={() => router.navigate('/notification')}>
-						<NotificationIcon />
+			<View className="bg-[#8b8b8b11] pb-[2px]">
+				<View className="p-5 flex-row justify-between items-center bg-white">
+					<Pressable onPress={() => setIsSidebarVisible(true)}>
+						<HamburgerIcon />
 					</Pressable>
-					<View>
-						<Image
-							source={{
-								uri: 'https://toyib.vercel.app/static/media/profileavatar.0d99c3ae75efbac1342f.png',
-							}}
-							className="w-7 h-7 rounded-full bg-[#c5c2bd]"
-						/>
-						{isVerified && (
-							<VerifiedIcon className="absolute -bottom-1 left-0" />
-						)}
+					{routeName === 'index' ? (
+						<LogoIcon />
+					) : (
+						<Text className="text-black font-bold text-lg capitalize">
+							{routeName}
+						</Text>
+					)}
+					<View className="flex-row items-center gap-x-4">
+						<GiveawayIcon />
+						<Pressable onPress={() => router.navigate('/notification')}>
+							<NotificationIcon />
+						</Pressable>
+						<View>
+							<Image
+								source={{
+									uri: 'https://toyib.vercel.app/static/media/profileavatar.0d99c3ae75efbac1342f.png',
+								}}
+								className="w-7 h-7 rounded-full bg-[#c5c2bd]"
+							/>
+							{isVerified && (
+								<VerifiedIcon className="absolute -bottom-1 left-0" />
+							)}
+						</View>
 					</View>
 				</View>
 			</View>

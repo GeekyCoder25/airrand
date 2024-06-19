@@ -9,7 +9,7 @@ import {
 	Keyboard,
 	Platform,
 } from 'react-native';
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {FC, useContext, useEffect, useRef, useState} from 'react';
 import {router, useLocalSearchParams} from 'expo-router';
 import BackArrow from '@/assets/images/icons/back-arrow';
 import {messages} from '../(tabs)/message';
@@ -18,6 +18,7 @@ import FileSelectIcon from '@/assets/images/icons/file-select-icon';
 import SendIcon from '@/assets/images/icons/send-icon';
 import {ScrollView} from 'react-native';
 import {randomUUID} from 'expo-crypto';
+import {AppContext} from '@/context/AppContext';
 
 interface ChatProps {
 	user: string;
@@ -27,6 +28,7 @@ interface ChatProps {
 }
 
 const MessageChat = () => {
+	const {isClient} = useContext(AppContext);
 	const {message_id} = useLocalSearchParams();
 	const [is12HourFormat, setIs12HourFormat] = useState(true);
 	const [textInput, setTextInput] = useState('');
@@ -203,7 +205,7 @@ const MessageChat = () => {
 		return (
 			<View>
 				<Text className="text-black font-bold text-lg capitalize">
-					No found task with this ID
+					No found message user ID
 				</Text>
 			</View>
 		);
@@ -225,7 +227,10 @@ const MessageChat = () => {
 		Keyboard.dismiss();
 	};
 	return (
-		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+		<TouchableWithoutFeedback
+			onPress={() => Keyboard.dismiss()}
+			touchSoundDisabled
+		>
 			<>
 				<View className="flex-row gap-x-5 items-center px-5 py-6 border-b-2 border-[#eee]">
 					<Pressable onPress={() => router.back()}>
@@ -266,11 +271,13 @@ const MessageChat = () => {
 							value={textInput}
 							placeholder={'Message...'}
 							placeholderTextColor={'#ccc'}
-							className="bg-[#fff5f6] flex-1 h-10 border-2 border-[#fff5f6] rounded-lg px-3"
+							className={`${
+								isClient ? 'bg-[#f3f5ff]' : 'bg-[#fff5f6]'
+							} flex-1 h-10 border-2 border-[#fff5f6] rounded-lg px-3`}
 						/>
-						<FileSelectIcon />
+						<FileSelectIcon color={isClient ? '#2F3C7E' : '#EA1588'} />
 						<Pressable onPress={handleSubmit}>
-							<SendIcon />
+							<SendIcon color={isClient ? '#2F3C7E' : '#EA1588'} />
 						</Pressable>
 					</View>
 				</KeyboardAvoidingView>
@@ -285,6 +292,7 @@ const Chat: FC<{chat: ChatProps; is12HourFormat: boolean}> = ({
 	chat,
 	is12HourFormat,
 }) => {
+	const {isClient} = useContext(AppContext);
 	const user = {
 		user: 'user@gmail.com',
 	};
@@ -303,7 +311,11 @@ const Chat: FC<{chat: ChatProps; is12HourFormat: boolean}> = ({
 		<View className="mb-5">
 			{chat.user === user.user ? (
 				<View>
-					<View className="bg-[#fff5f6] p-5 w-fit ml-auto max-w-[70%] rounded-xl">
+					<View
+						className={`${
+							isClient ? 'bg-[#f3f5ff]' : 'bg-[#fff5f6]'
+						} p-5 w-fit ml-auto max-w-[70%] rounded-xl`}
+					>
 						<Text>{chat.message}</Text>
 					</View>
 					<Text className="text-right mr-2 mt-2 opacity-50 font-semibold">
@@ -312,7 +324,11 @@ const Chat: FC<{chat: ChatProps; is12HourFormat: boolean}> = ({
 				</View>
 			) : (
 				<View>
-					<View className="bg-[#fff5f6] p-5 w-fit max-w-[70%] rounded-xl">
+					<View
+						className={`${
+							isClient ? 'bg-[#f3f5ff]' : 'bg-[#fff5f6]'
+						} p-5 w-fit max-w-[70%] rounded-xl`}
+					>
 						<Text>{chat.message}</Text>
 					</View>
 					<Text className="ml-2 mt-2 opacity-50 font-semibold">{chatTime}</Text>
