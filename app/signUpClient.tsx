@@ -1,11 +1,33 @@
+"use client"
 import { StyleSheet, Text, View,TextInput, ScrollView,Image, TouchableOpacity} from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'expo-router'
 import { useRouter } from 'expo-router'
-
+ 
 const signUpClient = () => {
-   
-    
+    const[username, SetUsername] = useState('')
+    const[email, SetEmail] = useState('')
+    const[password, SetPasword] = useState('')
+
+    async function fetchdata(e){
+        e.preventDefault()
+        try {
+            const baseUrl = ''
+            await fetch(baseUrl,{
+                method:'POST',
+                body: JSON.stringify({username, email, password}),
+                headers: {'content-type': 'application/json'}
+            })
+            .then((respond)=>respond.json())
+            .then(()=>{
+
+            })
+        } catch (error) {
+            console.error("there is an error")
+        }
+    }
+
+
   return (
     <ScrollView className=' h-full'>
     <View className='flex items-center bg-white w-[100%] h-[100vh]'>
@@ -20,6 +42,7 @@ const signUpClient = () => {
           placeholder='Username e.g Tosh ..'
           placeholderTextColor="black"
           autoComplete="off"
+        //   onChange={(e)=>SetPasword(e.target.value)}
 
           />
           <TextInput className='bg-[#F3F5FF] w-[100%] h-[60px] rounded-[10px] text-[15px] font-semibold px-[15px]' 
