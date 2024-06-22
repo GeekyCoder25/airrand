@@ -112,7 +112,7 @@ const App = () => {
 						<Stack.Screen name="giveawayclientTwo" />
 						<Stack.Screen name="giveawayClient" />
 						<Stack.Screen name="loginClient" />
-						<Stack.Screen name="signUpClient" />
+						<Stack.Screen name="signUpClient" options={{headerShown: false}} />
 						<Stack.Screen name="+not-found" />
 					</Stack>
 				) : (

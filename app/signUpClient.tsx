@@ -1,5 +1,5 @@
 "use client"
-import { StyleSheet, Text, View,TextInput, ScrollView,Image, TouchableOpacity} from 'react-native'
+import { StyleSheet, Text, View,TextInput, ScrollView,Image, TouchableOpacity, Alert} from 'react-native'
 import React, { useState } from 'react'
 import { Link } from 'expo-router'
 import { useRouter } from 'expo-router'
@@ -9,18 +9,28 @@ const signUpClient = () => {
     const[email, SetEmail] = useState('')
     const[password, SetPasword] = useState('')
 
-    async function fetchdata(e: { preventDefault: () => void }){
+    async function fetchdata(){
+        if(!username || !password || !email){
+            Alert.alert("please fill all this part")
+            return
+        }
         try {
-            const baseUrl = ''
+            const baseUrl = 'http://localhost:4000/user/register'
           const response = await fetch(baseUrl,{
                 method:'POST',
                 body: JSON.stringify({username, email, password}),
                 headers: {'content-type': 'application/json'}
             })
+           if(response.ok){
            const data = await response.json()
-            console.log(data)
+            Alert.alert("registered sucessfully", data)
+           }
+           else{
+            Alert.alert("regitration failed")
+           }   
         } catch (error) {
             console.error("there is an error")
+            Alert.alert("there is an error")
         }
     }
 
@@ -56,6 +66,7 @@ const signUpClient = () => {
           keyboardType="visible-password"
           placeholderTextColor="black"
           autoComplete="off"
+          secureTextEntry={true}
           value={password}
           onChangeText={SetPasword}
 
