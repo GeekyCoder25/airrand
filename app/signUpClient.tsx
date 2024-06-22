@@ -9,19 +9,16 @@ const signUpClient = () => {
     const[email, SetEmail] = useState('')
     const[password, SetPasword] = useState('')
 
-    async function fetchdata(e){
-        e.preventDefault()
+    async function fetchdata(e: { preventDefault: () => void }){
         try {
             const baseUrl = ''
-            await fetch(baseUrl,{
+          const response = await fetch(baseUrl,{
                 method:'POST',
                 body: JSON.stringify({username, email, password}),
                 headers: {'content-type': 'application/json'}
             })
-            .then((respond)=>respond.json())
-            .then(()=>{
-
-            })
+           const data = await response.json()
+            console.log(data)
         } catch (error) {
             console.error("there is an error")
         }
@@ -42,7 +39,8 @@ const signUpClient = () => {
           placeholder='Username e.g Tosh ..'
           placeholderTextColor="black"
           autoComplete="off"
-        //   onChange={(e)=>SetPasword(e.target.value)}
+          value={username}
+          onChangeText={SetUsername}
 
           />
           <TextInput className='bg-[#F3F5FF] w-[100%] h-[60px] rounded-[10px] text-[15px] font-semibold px-[15px]' 
@@ -50,12 +48,16 @@ const signUpClient = () => {
           placeholderTextColor="black"
           keyboardType="email-address"
           autoComplete="off"
+          value={email}
+          onChangeText={SetEmail}
           />
           <TextInput className='bg-[#F3F5FF] w-[100%] h-[60px] rounded-[10px] text-[15px] font-semibold px-[15px] outline-black-500 text-red' 
           placeholder='Password ..'
           keyboardType="visible-password"
           placeholderTextColor="black"
           autoComplete="off"
+          value={password}
+          onChangeText={SetPasword}
 
           />
           
@@ -64,6 +66,7 @@ const signUpClient = () => {
       <TouchableOpacity 
                     className='bg-[#2F3C7E] w-[85%] p-5 rounded-lg justify-center items-center mt-[20px]'
                     // onPress={()=>navigate.navigate('signup')}
+                    onPress={fetchdata}
                     >
                     <Text className='text-white'>Continue</Text>
                 </TouchableOpacity>
