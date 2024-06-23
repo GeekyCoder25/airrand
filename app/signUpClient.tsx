@@ -15,7 +15,7 @@ const signUpClient = () => {
             return
         }
         try {
-            const baseUrl = 'http://localhost:4000/user/register'
+            const baseUrl = 'http://192.168.0.10:4000/user/registe'
           const response = await fetch(baseUrl,{
                 method:'POST',
                 body: JSON.stringify({username, email, password}),
@@ -29,7 +29,8 @@ const signUpClient = () => {
             Alert.alert("regitration failed")
            }   
         } catch (error) {
-            console.error("there is an error")
+            // console.error("there is an error")
+            console.log(error)
             Alert.alert("there is an error")
         }
     }
