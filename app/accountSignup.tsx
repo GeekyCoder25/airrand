@@ -29,9 +29,11 @@ const accountSignup = () => {
                 onPress={()=>{setNewBtn(true); if(active == true){
                     setActive(false);
                     setActive1(true)
+                    localStorage.setItem('account', '')
                 }else{
                     setActive(true)
                     setActive1(false)
+                    localStorage.setItem('account', 'client')
                 }}}
             >
                 <Text className='ml-[30px] mb-1 text-[20px] font-bold'>As A Client</Text>
@@ -43,9 +45,11 @@ const accountSignup = () => {
                  onPress={()=>{setNewBtn(true); if(active1 == true){
                     setActive(true);
                     setActive1(false)
+                    localStorage.setItem('account', 'tasker')
                 }else{
                     setActive(false)
                     setActive1(true)
+                    localStorage.setItem('account', '')
                 }}}
                 className=' w-[100%] py-[30px] rounded-[20px]'
 

@@ -8,6 +8,7 @@ const signUpClient = () => {
     const[username, SetUsername] = useState('')
     const[email, SetEmail] = useState('')
     const[password, SetPasword] = useState('')
+    const userType = localStorage.getItem('account')
 
     async function fetchdata(){
         if(!username || !password || !email){
@@ -15,10 +16,10 @@ const signUpClient = () => {
             return
         }
         try {
-            const baseUrl = 'http://192.168.0.10:4000/user/registe'
+            const baseUrl = 'http://192.168.0.10:4000/user/register'
           const response = await fetch(baseUrl,{
                 method:'POST',
-                body: JSON.stringify({username, email, password}),
+                body: JSON.stringify({username, email, password, userType}),
                 headers: {'content-type': 'application/json'}
             })
            if(response.ok){
@@ -78,6 +79,7 @@ const signUpClient = () => {
       <TouchableOpacity 
                     className='bg-[#2F3C7E] w-[85%] p-5 rounded-lg justify-center items-center mt-[20px]'
                     // onPress={()=>navigate.navigate('signup')}
+                    
                     onPress={fetchdata}
                     >
                     <Text className='text-white'>Continue</Text>
