@@ -17,7 +17,7 @@ const Sidebar = ({
 	const {replace} = useRouter();
 	const sidebarLinks = [
 		{
-			link: '/signUpClient',
+			link: '/accountSignup',
 			label: 'account info.',
 		},
 		{

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity,Pressable } from 'react-native'
 import React, { useState } from 'react'
 import { Link, useRouter} from 'expo-router'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const accountSignup = () => {
     const navigate = useRouter()
@@ -29,11 +30,11 @@ const accountSignup = () => {
                 onPress={()=>{setNewBtn(true); if(active == true){
                     setActive(false);
                     setActive1(true)
-                    localStorage.setItem('account', '')
+                     AsyncStorage.setItem('account', '')
                 }else{
                     setActive(true)
                     setActive1(false)
-                    localStorage.setItem('account', 'client')
+                    AsyncStorage.setItem('account', 'client')
                 }}}
             >
                 <Text className='ml-[30px] mb-1 text-[20px] font-bold'>As A Client</Text>
@@ -45,11 +46,11 @@ const accountSignup = () => {
                  onPress={()=>{setNewBtn(true); if(active1 == true){
                     setActive(true);
                     setActive1(false)
-                    localStorage.setItem('account', 'tasker')
+                    AsyncStorage.setItem('account', 'tasker')
                 }else{
                     setActive(false)
                     setActive1(true)
-                    localStorage.setItem('account', '')
+                    AsyncStorage.setItem('account', '')
                 }}}
                 className=' w-[100%] py-[30px] rounded-[20px]'
 
@@ -64,7 +65,7 @@ const accountSignup = () => {
             {newBtn && 
                     <TouchableOpacity 
                     className='bg-[#EA1588] w-full p-5 rounded-lg justify-center items-center'
-                    onPress={()=>navigate.navigate('signup')}
+                    onPress={()=>navigate.navigate('signUpClient')}
                     >
                     <Text className='text-white'>Continue</Text>
                 </TouchableOpacity>

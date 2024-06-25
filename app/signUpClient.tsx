@@ -3,12 +3,13 @@ import { StyleSheet, Text, View,TextInput, ScrollView,Image, TouchableOpacity, A
 import React, { useState } from 'react'
 import { Link } from 'expo-router'
 import { useRouter } from 'expo-router'
+import AsyncStorage from '@react-native-async-storage/async-storage';
  
-const signUpClient = () => {
+const signUpClient =async () => {
     const[username, SetUsername] = useState('')
     const[email, SetEmail] = useState('')
     const[password, SetPasword] = useState('')
-    const userType = localStorage.getItem('account')
+    const userType = await AsyncStorage.getItem('account')
 
     async function fetchdata(){
         if(!username || !password || !email){
@@ -25,6 +26,7 @@ const signUpClient = () => {
            if(response.ok){
            const data = await response.json()
             Alert.alert("registered sucessfully", data)
+            console.log("suceesfully", data)
            }
            else{
             Alert.alert("regitration failed")
