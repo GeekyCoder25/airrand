@@ -27,7 +27,7 @@ const onboarding4 = () => {
 		</View>
           <View className="flex-1 justify-center items-center gap-y-8">
             <TouchableOpacity 
-              onPress={() => navigate("login")}
+              onPress={() => navigate("loginClient")}
               className="bg-[#2F3C7E] w-full p-5 rounded-lg justify-center items-center">
               <Text className="text-white">Log In</Text>
             </TouchableOpacity>

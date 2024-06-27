@@ -43,7 +43,9 @@ const App = () => {
 						<Stack.Screen name="profile" />
 						<Stack.Screen name="referral" />
 						<Stack.Screen name="wallet" />
-						<Stack.Screen name="login" options={{headerShown: false}} />
+						{/* <Stack.Screen name="login" options={{headerShown: false}} /> */}
+						<Stack.Screen name="loginClient" options={{headerShown: false}}/>
+						<Stack.Screen name="signUpClient" options={{headerShown: false}} />
 						<Stack.Screen name="signup" options={{headerShown: false}} />
 						<Stack.Screen name="accountSignup" options={{headerShown: false}} />
 						<Stack.Screen name="onboarding4" options={{headerShown: false}} />
@@ -111,8 +113,8 @@ const App = () => {
 						<Stack.Screen name="giveawayclientThree" />
 						<Stack.Screen name="giveawayclientTwo" />
 						<Stack.Screen name="giveawayClient" />
-						<Stack.Screen name="loginClient" />
-						<Stack.Screen name="signUpClient" options={{headerShown: false}} />
+						{/* <Stack.Screen name="loginClient" options={{headerShown: false}}/>
+						<Stack.Screen name="signUpClient" options={{headerShown: false}} /> */}
 						<Stack.Screen name="+not-found" />
 					</Stack>
 				) : (
@@ -126,7 +128,7 @@ const App = () => {
 						<Stack.Screen name="profile" />
 						<Stack.Screen name="referral" />
 						<Stack.Screen name="wallet" />
-						<Stack.Screen name="login" options={{headerShown: false}} />
+						{/* <Stack.Screen name="login" options={{headerShown: false}} /> */}
 						<Stack.Screen name="signup" options={{headerShown: false}} />
 						<Stack.Screen name="accountSignup" options={{headerShown: false}} />
 						<Stack.Screen name="onboarding4" options={{headerShown: false}} />

@@ -7,12 +7,14 @@ import LogoutIcon from '@/assets/images/icons/logout-icon';
 import SwitchOnIcon from '@/assets/images/icons/switch-on-icon';
 import {AppContext} from '@/context/AppContext';
 import Button from './Button';
+// import { useRouter } from 'expo-router';
 
 const Sidebar = ({
 	setIsSidebarVisible,
 }: {
 	setIsSidebarVisible: Dispatch<SetStateAction<boolean>>;
 }) => {
+	const navigate = useRouter()
 	const {isClient, setIsClient} = useContext(AppContext);
 	const {replace} = useRouter();
 	const sidebarLinks = [
@@ -102,14 +104,13 @@ const Sidebar = ({
 				<Button
 					style=" flex-row gap-x-2 py-5 rounded-2xl justify-center items-center"
 					onPress={() => {
-						replace('onboarding1');
+						// replace('onboarding1');
 						setIsSidebarVisible(false);
+						navigate.navigate('loginClient')
 					}}
 				>
 					<LogoutIcon />
-					<Link href="/onboarding1">
 						<Text className="text-white font-bold">Log Out</Text>
-					</Link>
 				</Button>
 			</View>
 		</Modal>

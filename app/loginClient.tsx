@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import { Link } from 'expo-router'
 import { useRouter } from 'expo-router'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import ToastManager, { Toast } from 'toastify-react-native'
+
 
 const loginClient = () => {
     const[email, SetEmail] = useState('')
@@ -12,7 +14,16 @@ const loginClient = () => {
    const navigate = useRouter()
 
 
+
     async function loginClient(){
+        if(!email || !password ){
+            Toast.warn("please fill all this part", 'top')
+            return
+        }
+        if(password.length < 6){
+            Toast.error("Password must be at least 6 characters long",'top')
+            return
+        }
         setIsClicked(true)
         const baseUrl = 'https://airrand-app-backend.onrender.com/user/login'
         try {
@@ -23,30 +34,34 @@ const loginClient = () => {
             })
             .then((res)=>res.json())
             if(response.success){
-                Alert.alert(response.message)
+                // Alert.alert(response.message)
+                Toast.success(response.message,'center')
                 console.log(response.message)
                 await AsyncStorage.setItem('token', response.token)
                 navigate.navigate('homePageClient')
                 setIsClicked(false)
             }
             else{
-                Alert.alert(response.error)
+                // Alert.alert(response.error)
+                Toast.error(response.error, 'center')
                 console.log(response.error)
                 setIsClicked(false)
             }
         } catch (error) {
             console.log(error)
-            Alert.alert("there is an error")
+            // Alert.alert("there is an error")
+            Toast.error("Unable to create an account, please try again later", "center" )
         }
     }
   return (
     <ScrollView className=' h-full'>
         <View className='flex items-center bg-white w-[100%] h-[100vh]'>
         <View className="w-[90%] bg-white flex mt-[20px]">
-            <Link href="/accountSignup">
+            {/* <Link href="/accountSignup">
                 <Text className=" text-black font-bold text-lg text-right">Back</Text>
-            </Link>
+            </Link> */}
         </View>
+        <ToastManager/>
         <Text className='text-black font-bold text-[25px] w-[85%] mt-[50px] mb-[40px]'>Log In</Text>
         <View className='w-[85%] mb-[35px] flex gap-y-[30px]'>
             
@@ -70,13 +85,13 @@ const loginClient = () => {
         </View>
         <Text className='w-[85%] font-semibold text-[15px]'>By Clicking Continue Mean You Have Agree To Our <Link href='terms'><Text className='text-[#2F3C7E] underline'>Terms</Text> & <Text className='text-[#2F3C7E] underline'>Conditions</Text></Link></Text>
         <TouchableOpacity 
-                className='bg-[#2F3C7E] w-[85%] p-5 rounded-lg justify-center items-center mt-[20px]'
+                className= {isCliecked ? 'bg-[#8397fb] w-[85%] mb-[20px] p-5 rounded-lg justify-center items-center mt-[20px]' : 'bg-[#2F3C7E] w-[85%] mb-[20px] p-5 rounded-lg justify-center items-center mt-[20px]'}
                 // onPress={()=>navigate.navigate('wallet')}
                 onPress={loginClient}
                 >
                 <Text  className='text-white'>{isCliecked ? 'Logging In ...' : 'Log In'}</Text>
             </TouchableOpacity>
-            <Text className='flex font-bold text-[15px] mt-[20px]'>Sign In With</Text>
+            {/* <Text className='flex font-bold text-[15px] mt-[20px]'>Sign In With</Text>
             <View className='w-[85%] gap-x-[20px] justify-center items-center flex flex-row py-[30px]'>
                 <View className='w-[55px] h-[55px] justify-center items-center rounded-full bg-[#2F3C7E]'>
                     <Image source={require('../assets/images/google.png')}/>
@@ -87,7 +102,7 @@ const loginClient = () => {
                 <View className='w-[55px] h-[55px] justify-center items-center rounded-full bg-[#2F3C7E]'>
                     <Image source={require('../assets/images/apple.png')}/>
                 </View>
-            </View>
+            </View> */}
             <Text className='w-[85%] font-semibold text-[15px] text-center' >Don't Have An Account? <Link href='/signup'><Text className='text-[#2F3C7E] underline'>Sign Up</Text></Link></Text>
             </View>
       </ScrollView>
