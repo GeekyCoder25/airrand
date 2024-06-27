@@ -1,40 +1,63 @@
 "use client"
-import { StyleSheet, Text, View,TextInput, ScrollView,Image, TouchableOpacity, Alert} from 'react-native'
+import { Text, View,TextInput, ScrollView,Image, TouchableOpacity, Alert} from 'react-native'
 import React, { useState } from 'react'
 import { Link } from 'expo-router'
 import { useRouter } from 'expo-router'
+import { err } from 'react-native-svg'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// import { useRouter } from 'expo-router'
  
-const signUpClient =async () => {
+const signUpClient = () => {
     const[username, SetUsername] = useState('')
     const[email, SetEmail] = useState('')
     const[password, SetPasword] = useState('')
-    const userType = await AsyncStorage.getItem('account')
+    const[isclick, setIsclicked] = useState(false)
+// 
+    const navigate = useRouter()
 
     async function fetchdata(){
+    const userType = await AsyncStorage.getItem('account')
+
         if(!username || !password || !email){
             Alert.alert("please fill all this part")
             return
         }
+        if(password.length < 6){
+            Alert.alert("Password must be at least 6 characters long")
+            return
+        }
+
+        if(username.length > 9){
+            Alert.alert("Username is too long")
+            return
+        }
         try {
-            const baseUrl = 'http://192.168.0.10:4000/user/register'
+            setIsclicked(true)
+            const baseUrl = 'https://airrand-app-backend.onrender.com/user/register'
           const response = await fetch(baseUrl,{
                 method:'POST',
                 body: JSON.stringify({username, email, password, userType}),
                 headers: {'content-type': 'application/json'}
-            })
-           if(response.ok){
-           const data = await response.json()
-            Alert.alert("registered sucessfully", data)
-            console.log("suceesfully", data)
+            }).then(res => res.json())
+            
+           if(response.success){
+            Alert.alert(response.message)
+            setIsclicked(false)
+
+            navigate.navigate('login')
            }
            else{
-            Alert.alert("regitration failed")
+            Alert.alert(response.error)
+            setIsclicked(false)
+
+
            }   
         } catch (error) {
-            // console.error("there is an error")
             console.log(error)
             Alert.alert("there is an error")
+            setIsclicked(false)
+
         }
     }
 
@@ -79,12 +102,12 @@ const signUpClient =async () => {
       </View>
       <Text className='w-[85%] font-semibold text-[15px]'>By Clicking Continue Mean You Have Agree To Our <Link href='terms'><Text className='text-[#2F3C7E] underline'>Terms</Text> & <Text className='text-[#2F3C7E] underline'>Conditions</Text></Link></Text>
       <TouchableOpacity 
-                    className='bg-[#2F3C7E] w-[85%] p-5 rounded-lg justify-center items-center mt-[20px]'
+                    className={isclick? 'bg-[#8397fb] w-[85%] p-5 rounded-lg justify-center items-center mt-[20px] cursor-not-allowed' : 'bg-[#2F3C7E] w-[85%] p-5 rounded-lg justify-center items-center mt-[20px]'}
                     // onPress={()=>navigate.navigate('signup')}
                     
                     onPress={fetchdata}
                     >
-                    <Text className='text-white'>Continue</Text>
+                    <Text className='text-white'>{isclick ? "Loading ..." : 'Continue'}</Text>
                 </TouchableOpacity>
         <Text className='flex font-bold text-[15px] mt-[20px]  '>Sign Up With</Text>
         <View className='w-[85%] gap-x-[20px] justify-center items-center flex flex-row py-[30px]'>
@@ -100,10 +123,8 @@ const signUpClient =async () => {
         </View>
         <Text className='w-[85%] font-semibold text-[15px] text-center' >Already Have An Account? <Link href='/login'><Text className='text-[#2F3C7E]'>Login</Text></Link></Text>
     </View>
-      </ScrollView>
+    </ScrollView>
   )
 }
 
 export default signUpClient
-
-const styles = StyleSheet.create({})

@@ -27,14 +27,14 @@ const accountSignup = () => {
                 style = {active ? styles.active: styles.button}
 
                 className=' w-[100%] py-[30px] rounded-[20px] '
-                onPress={()=>{setNewBtn(true); if(active == true){
+                onPress={async()=>{setNewBtn(true); if(active == true){
                     setActive(false);
                     setActive1(true)
-                     AsyncStorage.setItem('account', '')
+                     await AsyncStorage.setItem('account', 'client')
                 }else{
                     setActive(true)
                     setActive1(false)
-                    AsyncStorage.setItem('account', 'client')
+                    await AsyncStorage.setItem('account', 'client')
                 }}}
             >
                 <Text className='ml-[30px] mb-1 text-[20px] font-bold'>As A Client</Text>
@@ -43,14 +43,14 @@ const accountSignup = () => {
 
             <TouchableOpacity
                 style = {active1 ? styles.active: styles.button}
-                 onPress={()=>{setNewBtn(true); if(active1 == true){
+                 onPress={async()=>{setNewBtn(true); if(active1 == true){
                     setActive(true);
                     setActive1(false)
-                    AsyncStorage.setItem('account', 'tasker')
+                    await AsyncStorage.setItem('account', 'tasker')
                 }else{
                     setActive(false)
                     setActive1(true)
-                    AsyncStorage.setItem('account', '')
+                    await AsyncStorage.setItem('account', 'tasker')
                 }}}
                 className=' w-[100%] py-[30px] rounded-[20px]'
 
