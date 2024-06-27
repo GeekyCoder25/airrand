@@ -13,7 +13,7 @@ const signUpClient = () => {
     const[email, SetEmail] = useState('')
     const[password, SetPasword] = useState('')
     const[isclick, setIsclicked] = useState(false)
-// 
+
     const navigate = useRouter()
 
     async function fetchdata(){
@@ -40,12 +40,13 @@ const signUpClient = () => {
                 body: JSON.stringify({username, email, password, userType}),
                 headers: {'content-type': 'application/json'}
             }).then(res => res.json())
-            
+// response.success .... the sucess depends on your backend, if it is ok you will write response.ok
            if(response.success){
+            // response.message too depend on your backend
             Alert.alert(response.message)
             setIsclicked(false)
 
-            navigate.navigate('login')
+            navigate.navigate('loginClient')
            }
            else{
             Alert.alert(response.error)
@@ -121,7 +122,7 @@ const signUpClient = () => {
                 <Image source={require('../assets/images/apple.png')}/>
             </View>
         </View>
-        <Text className='w-[85%] font-semibold text-[15px] text-center' >Already Have An Account? <Link href='/login'><Text className='text-[#2F3C7E]'>Login</Text></Link></Text>
+        <Text className='w-[85%] font-semibold text-[15px] text-center' >Already Have An Account? <Link href='/loginClient'><Text className='text-[#2F3C7E]'>Login</Text></Link></Text>
     </View>
     </ScrollView>
   )
