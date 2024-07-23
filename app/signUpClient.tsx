@@ -17,6 +17,7 @@ const signUpClient = () => {
 
     const navigate = useRouter()
 
+    // fetch 
     async function fetchdata(){
     const userType = await AsyncStorage.getItem('account')
 
@@ -42,7 +43,7 @@ const signUpClient = () => {
         try {
             setIsclicked(true)
             const baseUrl = 'https://airrand-app-backend.onrender.com/user/register'
-          const response = await fetch(baseUrl,{
+            const response = await fetch(baseUrl,{
                 method:'POST',
                 body: JSON.stringify({username, email, password, userType}),
                 headers: {'content-type': 'application/json'}
